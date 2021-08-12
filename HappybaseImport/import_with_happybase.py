@@ -52,7 +52,25 @@ def import_into_hbase():
     except Exception as e:
         logger.info(f"Error!!{e}")
         connection.close()
+
+def scan_table():
+    """
+    Description:
+        This function will scan the table in HBase and print the data.
+    """
+    try:
+        connection = create_hbase_connection()
+        table = connection.table('wordcount')
+        for key,data in table.scan():
+            no = key.decode('utf-8')
+            for value1, value2 in data.items():
+                cf1 = value1.decode('utf-8')
+                cf2 = value2.decode('utf-8')
+                logger.info(no,cf1,cf2)
+    except Exception as e:
+        logger.info(e)
     
 create_hbase_connection()
 create_table()
 import_into_hbase()
+scan_table()
