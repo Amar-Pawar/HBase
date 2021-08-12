@@ -1,9 +1,9 @@
 '''
 /**********************************************************************************
 @Author: Amar Pawar
-@Date: 2021-08-07
+@Date: 2021-08-11
 @Last Modified by: Amar Pawar
-@Last Modified time: 2021-08-07
+@Last Modified time: 2021-08-11
 @Title : Program to import data from given file to HBase table with happybase
 /**********************************************************************************
 '''
