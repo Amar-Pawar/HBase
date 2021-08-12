@@ -35,6 +35,24 @@ def create_table():
     except Exception as e:
         logger.info(f"Errorr!!{e}")
         connection.close()
+
+def import_into_hbase():
+    """
+    Description:
+        This function will import data from given file in HBase table the we created.
+    """
+    try:
+        connection=create_hbase_connection()
+        table = connection.table('wordcount')
+        input_text = csv.DictReader(open("/home/ubuntu/Documents/HadoopWorkspace/HBase/HappybaseImport/wordcount_text"))
+        for row in input_text:
+            table.put(row['no'],
+            {'cf1:word': row['word'],
+            'cf2:count':row['count']})
+    except Exception as e:
+        logger.info(f"Error!!{e}")
+        connection.close()
     
 create_hbase_connection()
 create_table()
+import_into_hbase()
